@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
+mysqlclient = "*"
+djangorestframework-simplejwt = "*"
+djoser = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 
