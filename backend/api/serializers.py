@@ -1,7 +1,7 @@
 from dataclasses import field
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from .models import Status, User
+from .models import Status, Story, User
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
 
 
@@ -21,6 +21,7 @@ class UserSerializer(BaseUserSerializer):
         fields= ['id', 'username', 'email']
 
 class StatusSerializer(serializers.ModelSerializer):
+    user=UserSerializer(many=False, read_only=True)
     class Meta:
         model=Status
         fields=['user', 'postedAt', 'content']
@@ -40,3 +41,14 @@ class CreateStatusSerializer(serializers.ModelSerializer):
             content=self.validated_data['content']
         )
 
+
+class StorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Story
+        fields=['id', 'user', 'image', 'postedAt']
+
+
+class CreateStorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Story
+        fields=['id', 'image']

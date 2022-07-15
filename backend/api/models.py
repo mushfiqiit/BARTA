@@ -9,3 +9,8 @@ class Status(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     postedAt=models.DateTimeField(auto_now=True)
     content=models.TextField(blank=False)
+
+class Story(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    postedAt=models.DateTimeField(auto_now=True)
+    image=models.ImageField()
