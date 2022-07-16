@@ -3,7 +3,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import Status, Story, User
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
-
+import base64
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -52,3 +52,27 @@ class CreateStorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Story
         fields=['id', 'image']
+
+    def save(self):
+        user=User.objects.get(
+            id=self.context['user_id']
+        )
+        image=self.validated_data['image']
+        from copyreg import pickle
+        from minio import Minio
+
+        access_key = "Mushfiqur05"
+        secret_key = "iitdu10mus"
+
+        client = Minio("127.0.0.1:9000", access_key, secret_key, secure=False)
+
+        
+        bucket_name = "images"
+        imagedir="media/api/images/"+str(image)
+
+                
+        print(image)
+        story=Story.objects.create(
+            user=user,
+            image=image
+        )

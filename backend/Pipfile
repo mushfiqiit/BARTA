@@ -10,6 +10,7 @@ djangorestframework-simplejwt = "*"
 djoser = "*"
 drf-nested-routers = "*"
 djangorestframework = "*"
+minio = "*"
 
 [dev-packages]
 

@@ -13,4 +13,4 @@ class Status(models.Model):
 class Story(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     postedAt=models.DateTimeField(auto_now=True)
-    image=models.ImageField()
+    image=models.ImageField(upload_to='api/images')
