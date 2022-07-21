@@ -11,6 +11,7 @@ djoser = "*"
 drf-nested-routers = "*"
 djangorestframework = "*"
 minio = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

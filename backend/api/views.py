@@ -16,6 +16,8 @@ class RegisterView(generics.CreateAPIView):
 
 class StatusViewSet(ModelViewSet):
     def get_queryset(self):
+        if self.request.user.is_anonymous:
+            return Status.objects.all()
         return Status.objects.filter(
             ~Q(user=self.request.user)).order_by('-postedAt')[:2]
 

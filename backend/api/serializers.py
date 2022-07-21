@@ -13,12 +13,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
-        fields = ['id', 'username', 'password',
-                  'email',]
+        fields = ['id', 'username', 'password']
 
 class UserSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
-        fields= ['id', 'username', 'email']
+        fields= ['id', 'username',]
 
 class StatusSerializer(serializers.ModelSerializer):
     user=UserSerializer(many=False, read_only=True)

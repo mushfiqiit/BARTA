@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class User(AbstractUser):
-    email=models.EmailField(unique=True)
+    pass
 
 class Status(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
