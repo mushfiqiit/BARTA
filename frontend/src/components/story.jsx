@@ -12,7 +12,7 @@ class Story extends Component {
   </ol>
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img className="d-block w-100" src="..." alt="First slide"/>
+      <img className="d-block w-100" src=".../backend/media/api/images/fightclub_YZhFoSc.jpeg" alt="First slide"/>
     </div>
     <div className="carousel-item">
       <img className="d-block w-100" src="..." alt="Second slide"/>

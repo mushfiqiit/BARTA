@@ -34,6 +34,8 @@ class StatusViewSet(ModelViewSet):
 
 class StoryViewSet(ModelViewSet):
     def get_queryset(self):
+        if self.request.user.is_anonymous:
+            return Story.objects.all()
         return Story.objects.filter(
             ~Q(user=self.request.user)).order_by('-postedAt')[:2]
 
