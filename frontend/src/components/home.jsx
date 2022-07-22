@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Status from './status';
+import authService from '../services/authService';
+import Story from './story';
+import ReqWithHead from '../utils/reqWithHead';
 
 class Home extends Component {
     state = { 
@@ -8,16 +11,22 @@ class Home extends Component {
     }
     
     async componentDidMount() {
-        const { data: status }=await axios.get(
-            "http://127.0.0.1:8000/api/status/"
+
+        const { data: status }=await ReqWithHead(
+            "api/status", authService.getJwt()
         );
+        
+            console.log(status);
+            console.log(authService.getJwt())
+        
         this.setState({status});
     }
     
     render() { 
         return (
             <React.Fragment>
-            
+                <Story />
+
           <div>
             <ul className='thought-list'>
                 {this.state.status.map(post => 

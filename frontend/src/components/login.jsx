@@ -13,14 +13,13 @@ class Login extends Component {
           "username":username,
           "password":password,
       }
+      
       console.log(data);
       const response = await authService.login(data);
       console.log(response);
       };
 
     render() {
-        if (authService.getCurrentUser()) 
-        return <Redirect to="/" />;
 
         return (
             <div>

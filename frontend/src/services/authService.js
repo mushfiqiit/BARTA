@@ -5,9 +5,10 @@ const tokenKey = "token";
 
 axios.defaults.headers.common["x-auth-token"] = getJwt();
 
-export async function login(email, password) {
-  const { data: jwt } = await axios.post(apiEndpoint, { email, password });
-  localStorage.setItem(tokenKey, jwt);
+export async function login(data) {
+  const { data: jwt } = await axios.post(apiEndpoint, data);
+  console.log(jwt.access);
+  localStorage.setItem(tokenKey, jwt.access);
 }
 
 export function loginWithJwt(jwt) {
