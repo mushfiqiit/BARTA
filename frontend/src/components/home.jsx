@@ -4,6 +4,7 @@ import Status from './status';
 import authService from '../services/authService';
 import Story from './story';
 import ReqWithHead from '../utils/reqWithHead';
+import PostWithHead from '../utils/postWithHead';
 
 class Home extends Component {
     state = { 
@@ -11,19 +12,38 @@ class Home extends Component {
     }
     
     async componentDidMount() {
-
+        console.log(authService.getCurrentUser());
         const { data: status }=await ReqWithHead(
             "api/status", authService.getJwt()
         );
         
-            console.log(status);
-            console.log(authService.getJwt())
+            //console.log(status);
+            //console.log(authService.getJwt())
         
         this.setState({status});
     }
+
+    handleSubmit =async(e) => {
+        e.preventDefault();
+    const content=e.target.content.value;
+      
+      const data={
+          "content":content,
+      }
+      console.log(data);
+      const response = await PostWithHead(
+          "api/status", data, authService.getJwt()
+      )
+      };
     
     render() { 
+        /* if(authService.getCurrentUser()) 
+        return<h1>User here</h1>
+        
+        else */
         return (
+
+            
             <React.Fragment>
                 <Story />
 
@@ -41,15 +61,16 @@ class Home extends Component {
 
 
             <div className='container-fluid m-5'>
-      <form>
-        <div className='row'>
 
-            
+      <form 
+      onSubmit={this.handleSubmit}
+      >
+        <div className='row'>
             <div className='col-6'>
                 <div className="form-floating">
-                    <textarea className="form-control" placeholder="Leave a status here" id="floatingTextarea" style={{height: "100px"}} 
+                    <textarea className="form-control" placeholder="Leave a status here" id="content" style={{height: "100px"}} 
                     ></textarea>
-                    <label htmlFor="floatingTextarea">Share your thoughts?</label>
+                    <label htmlFor="content">Share your thoughts?</label>
                 </div>
             </div>
             <div className='col-2'>

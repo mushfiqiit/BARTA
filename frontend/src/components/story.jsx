@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
+import authService from '../services/authService';
+import ReqWithHead from '../utils/reqWithHead';
+import { tokenUrl } from '../constants/constants';
 
 class Story extends Component {
-    state = {  } 
+    state = { 
+        stories: []
+     } 
+
+     async componentDidMount() {
+        console.log(authService.getCurrentUser());
+        const { data: stories}=await ReqWithHead(
+            "api/story", authService.getJwt()
+        );
+        
+            console.log(stories);
+            console.log(authService.getJwt())
+        
+        this.setState({stories});
+    }
+
     render() { 
+        const { stories }=this.state;
         return (
-            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-  <ol className="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img className="d-block w-100" src=".../backend/media/api/images/fightclub_YZhFoSc.jpeg" alt="First slide"/>
-    </div>
-    <div className="carousel-item">
-      <img className="d-block w-100" src="..." alt="Second slide"/>
-    </div>
-    <div className="carousel-item">
-      <img className="d-block w-100" src="..." alt="Third slide"/>
-    </div>
-  </div>
-  <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="sr-only">Previous</span>
-  </a>
-  <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="sr-only">Next</span>
-  </a>
-</div>
+            <div class="container mt-4">
+            <div class="card-group">
+                <div class="row">
+                {stories.map(story=>(<div class="card col-md-2 pt-4">
+                        <p>{story.user.username}</p>
+                        <img class="card-img-top" src=
+        {tokenUrl+story.image} />
+                    </div>))}
+    
+                    
+                </div>
+            </div>
+        </div>
         );
     }
 }

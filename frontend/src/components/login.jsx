@@ -14,9 +14,10 @@ class Login extends Component {
           "password":password,
       }
       
-      console.log(data);
+      //console.log(data);
       const response = await authService.login(data);
       console.log(response);
+      alert(username+" logged in.");
       };
 
     render() {

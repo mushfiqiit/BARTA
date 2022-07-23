@@ -33,7 +33,9 @@ const NavBar = () => {
 
         <NavLink className="nav-item nav-link" to="/logout">
                 Logout
-              </NavLink>
+        </NavLink>
+
+        
     </div>
   </div>
 </nav>

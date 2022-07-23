@@ -1,3 +1,4 @@
+from asyncore import read
 from dataclasses import field
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
@@ -42,6 +43,7 @@ class CreateStatusSerializer(serializers.ModelSerializer):
 
 
 class StorySerializer(serializers.ModelSerializer):
+    user=UserSerializer(many=False, read_only=True)
     class Meta:
         model=Story
         fields=['id', 'user', 'image', 'postedAt']
@@ -56,22 +58,7 @@ class CreateStorySerializer(serializers.ModelSerializer):
         user=User.objects.get(
             id=self.context['user_id']
         )
-        image=self.validated_data['image']
-        from copyreg import pickle
-        from minio import Minio
-
-        access_key = "Mushfiqur05"
-        secret_key = "iitdu10mus"
-
-        client = Minio("127.0.0.1:9000", access_key, secret_key, secure=False)
-
-        
-        bucket_name = "images"
-        imagedir="media/api/images/"+str(image)
-
-                
-        print(image)
         story=Story.objects.create(
             user=user,
-            image=image
+            **self.validated_data
         )
