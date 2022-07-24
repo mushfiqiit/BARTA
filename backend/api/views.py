@@ -53,6 +53,14 @@ class StoryViewSet(ModelViewSet):
 
 class createStory(APIView):
     def get(self, request):
+        from copyreg import pickle
+        from minio import Minio
+
+        access_key = "minioadmin"
+        secret_key = "minioadmin"
+
+        client = Minio("127.0.0.1:9000", access_key, secret_key, secure=False)
+        print(client)
         return Response({'data':'empty'})
 
     def post(self, request):

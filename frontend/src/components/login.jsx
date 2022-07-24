@@ -21,7 +21,7 @@ class Login extends Component {
       };
 
     render() {
-
+        if (authService.getCurrentUser()) return <Redirect to="/" />;
         return (
             <div>
             <h1 align="center">Login</h1>

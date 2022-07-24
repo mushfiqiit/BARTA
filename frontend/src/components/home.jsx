@@ -5,6 +5,8 @@ import authService from '../services/authService';
 import Story from './story';
 import ReqWithHead from '../utils/reqWithHead';
 import PostWithHead from '../utils/postWithHead';
+import StoryUpload from './storyUpload';
+import StatusPost from './statusPost';
 
 class Home extends Component {
     state = { 
@@ -32,7 +34,7 @@ class Home extends Component {
       }
       console.log(data);
       const response = await PostWithHead(
-          "api/status", data, authService.getJwt()
+          "api/status/", data, authService.getJwt()
       )
       };
     
@@ -46,7 +48,13 @@ class Home extends Component {
             
             <React.Fragment>
                 <Story />
+            
+            <StoryUpload />
 
+            <br></br>
+            <br></br>
+            <br></br>
+        <h1>Status</h1>
           <div>
             <ul className='thought-list'>
                 {this.state.status.map(post => 
@@ -61,23 +69,9 @@ class Home extends Component {
 
 
             <div className='container-fluid m-5'>
-
-      <form 
-      onSubmit={this.handleSubmit}
-      >
-        <div className='row'>
-            <div className='col-6'>
-                <div className="form-floating">
-                    <textarea className="form-control" placeholder="Leave a status here" id="content" style={{height: "100px"}} 
-                    ></textarea>
-                    <label htmlFor="content">Share your thoughts?</label>
-                </div>
-            </div>
-            <div className='col-2'>
-            <button className='btn my-5' type='submit'>Post</button>
-            </div>
-        </div>
-      </form>
+                
+                <StatusPost />
+      
     </div>
             </React.Fragment>
             

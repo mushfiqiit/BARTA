@@ -58,7 +58,36 @@ class CreateStorySerializer(serializers.ModelSerializer):
         user=User.objects.get(
             id=self.context['user_id']
         )
+        image=self.validated_data['image']
         story=Story.objects.create(
             user=user,
             **self.validated_data
         )
+
+        from copyreg import pickle
+        from minio import Minio
+
+        access_key = "minioadmin"
+        secret_key = "minioadmin"
+
+        client = Minio("127.0.0.1:9000", access_key, secret_key, secure=False)
+        print(client)
+        # buckets = client.list_buckets()
+        # for bucket in buckets:
+        #     print(bucket.name, bucket.creation_date)
+
+        bucket_name = "facebookmini"
+        object_name = "picture.png"
+        print(story.image)
+        path=str(story.image)
+        path="media/"+path
+        print("hello")
+        print(path)
+        fin_path = path.split("/")
+        fin_path = fin_path[len(fin_path)-1]
+        print(fin_path)
+
+        print(client.fput_object(bucket_name, fin_path, path))
+
+
+        
