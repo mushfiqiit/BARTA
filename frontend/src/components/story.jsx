@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import authService from '../services/authService';
 import ReqWithHead from '../utils/reqWithHead';
-import { tokenUrl } from '../constants/constants';
+import { tokenUrl, minioUrl } from '../constants/constants';
 
 class Story extends Component {
     state = { 
         stories: []
      } 
-
      async componentDidMount() {
         console.log(authService.getCurrentUser());
         const { data: stories}=await ReqWithHead(

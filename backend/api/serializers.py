@@ -46,7 +46,7 @@ class StorySerializer(serializers.ModelSerializer):
     user=UserSerializer(many=False, read_only=True)
     class Meta:
         model=Story
-        fields=['id', 'user', 'image', 'postedAt']
+        fields=['id', 'user', 'image', 'postedAt', 'miniourl']
 
 
 class CreateStorySerializer(serializers.ModelSerializer):
@@ -77,7 +77,6 @@ class CreateStorySerializer(serializers.ModelSerializer):
         #     print(bucket.name, bucket.creation_date)
 
         bucket_name = "facebookmini"
-        object_name = "picture.png"
         print(story.image)
         path=str(story.image)
         path="media/"+path

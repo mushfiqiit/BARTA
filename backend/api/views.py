@@ -17,9 +17,9 @@ class RegisterView(generics.CreateAPIView):
 class StatusViewSet(ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_anonymous:
-            return Status.objects.all()
+            return Status.objects.all().order_by('-postedAt')[:10]
         return Status.objects.filter(
-            ~Q(user=self.request.user)).order_by('-postedAt')[:2]
+            ~Q(user=self.request.user)).order_by('-postedAt')[:10]
 
     def get_serializer_class(self):
         if self.request.method=='POST':
@@ -35,9 +35,9 @@ class StatusViewSet(ModelViewSet):
 class StoryViewSet(ModelViewSet):
     def get_queryset(self):
         if self.request.user.is_anonymous:
-            return Story.objects.all()
+            return Story.objects.all().order_by('-postedAt')[:10]
         return Story.objects.filter(
-            ~Q(user=self.request.user)).order_by('-postedAt')[:2]
+            ~Q(user=self.request.user)).order_by('-postedAt')[:10]
 
     def get_serializer_class(self):
         if self.request.method=='POST':
