@@ -1,5 +1,3 @@
-from asyncore import read
-from dataclasses import field
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import Status, Story, User
@@ -89,4 +87,5 @@ class CreateStorySerializer(serializers.ModelSerializer):
         print(client.fput_object(bucket_name, fin_path, path))
 
 
-        
+class GetUserSerializer(serializers.Serializer):
+    userid=serializers.IntegerField()

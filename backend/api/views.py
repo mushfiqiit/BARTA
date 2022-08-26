@@ -1,6 +1,6 @@
 from rest_framework.permissions import AllowAny
 from rest_framework import generics
-from .serializers import CreateStatusSerializer, CreateStorySerializer, RegisterSerializer, StatusSerializer, StorySerializer
+from .serializers import CreateStatusSerializer, CreateStorySerializer, GetUserSerializer, RegisterSerializer, StatusSerializer, StorySerializer
 from .models import Status, Story, User
 from rest_framework.viewsets import ModelViewSet
 from django.db.models import Q
@@ -70,3 +70,20 @@ class createStory(APIView):
         print(image)
         return Response({'data':'empty'})
 
+
+class getUser(APIView):
+    def get(self, request):
+        return Response({'data':'empty'})
+
+    def post(self, request):
+        serializer=GetUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user=User.objects.get(
+            pk=serializer.validated_data['userid']
+            )
+
+        return Response(
+            {
+                'username':user
+            }
+        )
