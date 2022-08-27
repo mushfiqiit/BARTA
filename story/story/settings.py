@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware'
 ]
 
-ROOT_URLCONF = 'user.urls'
+ROOT_URLCONF = 'story.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'user.wsgi.application'
+WSGI_APPLICATION = 'story.wsgi.application'
 
 
 # Database
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'user.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'user',
+        'NAME': 'story',
         'HOST':'localhost',
         'USER': 'root',
         'PASSWORD': 'password',
@@ -146,18 +146,10 @@ REST_FRAMEWORK = {
     ),
 }
 
-SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
-   'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-}
 
 
-AUTH_USER_MODEL ='api.User'
 
-DJOSER = {
-    'SERIALIZERS': {
-        'user_create':'api.serializers.UserCreateSerializer',
-        'current_user': 'api.serializers.UserSerializer',
-    }
-}
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
