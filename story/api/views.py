@@ -2,11 +2,22 @@ from .serializers import CreateStorySerializer
 from .serializers import StorySerializer
 from .models import Story
 from rest_framework.viewsets import ModelViewSet
+from django.db.models import Q
+import requests
 
 # Create your views here.
 class StoryViewSet(ModelViewSet):
     def get_queryset(self):
-        return Story.objects.all().order_by('-postedAt')[:10]
+        if 'authorization' not in self.request.headers:
+            return Story.objects.all().order_by('-postedAt')[:10]
+        result=requests.get(
+            url='http://127.0.0.1:5000/login/users/me',
+            headers={"Authorization":self.request.headers['authorization']}
+            )
+        username=result.json()['username']
+        userid=result.json()['id']
+        return Story.objects.filter(
+            ~Q(username=username)).order_by('-postedAt')[:10]
         
     def get_serializer_class(self):
         if(self.request.method=='POST'):

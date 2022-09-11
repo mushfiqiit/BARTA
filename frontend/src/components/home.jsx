@@ -19,7 +19,7 @@ class Home extends Component {
             "api/status", authService.getJwt()
         );
         
-            //console.log(status);
+            console.log(status);
             //console.log(authService.getJwt())
         
         this.setState({status});
@@ -61,7 +61,7 @@ class Home extends Component {
                     <Status
                         key={post.id}
                         content={post.content}
-                        username={post.user.username}
+                        username={post.username}
                         time={post.postedAt}
                     />)}
             </ul>

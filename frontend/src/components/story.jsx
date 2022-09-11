@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import authService from '../services/authService';
 import ReqWithHead from '../utils/reqWithHead';
-import { tokenUrl, minioUrl } from '../constants/constants';
+import { tokenUrl } from '../constants/constants';
+const minioUrl="http://127.0.0.1:5002";
 
 class Story extends Component {
     state = { 
@@ -26,9 +27,9 @@ class Story extends Component {
             <div class="card-group">
                 <div class="row">
                 {stories.map(story=>(<div class="card col-md-2 pt-4">
-                        <p>{story.user.username}</p>
+                        <p>{story.username}</p>
                         <img class="card-img-top" src=
-        {tokenUrl+story.image} />
+        {minioUrl+story.image} />
                     </div>))}
     
                     

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiEndpoint = "http://127.0.0.1:8000/login/users/";
+const apiEndpoint = "http://127.0.0.1:8080/login/users/";
 
 export function register(user) {
 

@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-const apiEndpoint = "http://127.0.0.1:8000/login/jwt/create";
+const apiEndpoint = "http://127.0.0.1:8080/login/jwt/create";
 const tokenKey = "token";
 
 axios.defaults.headers.common["x-auth-token"] = getJwt();
