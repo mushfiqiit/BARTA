@@ -5,6 +5,7 @@ Django==4.1
 django-cors-headers==3.13.0
 django-rest-framework-nested==0.0.1
 djangorestframework==3.13.1
+drf-hal-json @ git+https://github.com/Artory/drf-hal-json@af134cad1c22d592ad14e532337d9842fb0210be
 idna==3.3
 pytz==2022.2.1
 requests==2.28.1
