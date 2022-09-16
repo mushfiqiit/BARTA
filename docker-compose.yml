@@ -20,27 +20,27 @@ services:
   user:
     image: user
     build: ./user
-    command: python manage.py runserver 0.0.0.0:8001
+    command: python manage.py runserver 0.0.0.0:5000
     # image: shirsho/login ## You can also provide an image here
     restart: unless-stopped
     ports:
-      - 8001:8001
+      - 5000:5000
   
   status:
     image: status
     build: ./status
-    command: python manage.py runserver 0.0.0.0:8003
+    command: python manage.py runserver 0.0.0.0:5001
     restart: unless-stopped
     ports:
-      - 8003:8003
+      - 5001:5001
       
   story:
     image: story
     build: ./story
-    command: python manage.py runserver 0.0.0.0:8004
+    command: python manage.py runserver 0.0.0.0:5002
     restart: unless-stopped
     ports:
-      - 8004:8004
+      - 5002:5002
     depends_on:
       - minioobj
       
