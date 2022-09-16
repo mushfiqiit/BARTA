@@ -7,4 +7,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . /status
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8004"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:5001"]
