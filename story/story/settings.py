@@ -85,11 +85,8 @@ WSGI_APPLICATION = 'story.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'story',
-        'HOST':'localhost',
-        'USER': 'root',
-        'PASSWORD': 'password',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 

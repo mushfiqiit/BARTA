@@ -83,11 +83,8 @@ WSGI_APPLICATION = 'status.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'status',
-        'HOST':'localhost',
-        'USER': 'root',
-        'PASSWORD': 'password',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
