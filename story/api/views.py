@@ -10,8 +10,10 @@ class StoryViewSet(ModelViewSet):
     def get_queryset(self):
         if 'authorization' not in self.request.headers:
             return Story.objects.all().order_by('-postedAt')[:10]
+
+        print(self.request.headers['authorization'])
         result=requests.get(
-            url='http://127.0.0.1:5003/login/users/me',
+            url='http://0.0.0.0:5003/login/users/me/',
             headers={"Authorization":self.request.headers['authorization']}
             )
         username=result.json()['username']

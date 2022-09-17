@@ -16,7 +16,7 @@ class CreateStorySerializer(serializers.ModelSerializer):
     def save(self):
         token=self.context['header']['authorization']
         result=requests.get(
-            url='http://127.0.0.1:5003/login/users/me',
+            url='http://127.0.0.1:5003/login/users/me/',
             headers={"Authorization":token}
             )
         username=result.json()['username']
