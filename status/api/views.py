@@ -13,10 +13,12 @@ class StatusViewSet(ModelViewSet):
     def get_queryset(self):
         if 'authorization' not in self.request.headers:
             return Status.objects.all().order_by('-postedAt')[:10]
-        result=requests.get(
-            url='http://127.0.0.1:5003/login/users/me',
+        session = requests.Session()
+        session.trust_env = True
+        result = session.get(
+            url='http://user:5003/login/users/me',
             headers={"Authorization":self.request.headers['authorization']}
-            )
+        )
         username=result.json()['username']
         userid=result.json()['id']
         return Status.objects.filter(

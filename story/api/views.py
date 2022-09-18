@@ -13,7 +13,7 @@ class StoryViewSet(ModelViewSet):
 
         print(self.request.headers['authorization'])
         result=requests.get(
-            url='http://0.0.0.0:5003/login/users/me/',
+            url='http://user:5003/login/users/me',
             headers={"Authorization":self.request.headers['authorization']}
             )
         username=result.json()['username']
